@@ -23,12 +23,12 @@ class Employee extends Model
 
     public function city()
     {
-        return $this->hasMany(City::class);
+        return $this->belongsTo(City::class);
     }
 
     public function department()
     {
-        return $this->hasMany(Department::class);
+        return $this->belongsTo(Department::class);
     }
 
 }
