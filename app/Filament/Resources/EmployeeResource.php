@@ -64,14 +64,13 @@ class EmployeeResource extends Resource
                                 return $state->cities->pluck('name', 'id');
                             })
                             ->required()
-                            ->reactive()
-                            ->afterStateUpdated(fn (callable $set) => $set('city_id', null)),
+                            ->reactive(),
                         Select::make('department_id')
                             ->relationship('department', 'name')->required(),
                         TextInput::make('first_name')->required()->required()->maxLength(255),
                         TextInput::make('last_name')->required()->required()->maxLength(255),
                         TextInput::make('address')->required()->required()->maxLength(255),
-                        TextInput::make('zip_code')->required()->required()->maxLength(5),
+                        TextInput::make('zip_code')->required()->required()->maxLength(7),
                         DatePicker::make('birth_date')->required(),
                         DatePicker::make('date_hired')->required(),
                     ])

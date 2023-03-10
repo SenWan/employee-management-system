@@ -2,8 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CountryResource\RelationManagers\EmployeesRelationManager;
 use App\Filament\Resources\StateResource\Pages;
 use App\Filament\Resources\StateResource\RelationManagers;
+use App\Filament\Resources\StateResource\RelationManagers\CitiesRelationManager;
+use App\Filament\Resources\StateResource\RelationManagers\EmployeesRelationManager as RelationManagersEmployeesRelationManager;
 use App\Models\State;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -60,7 +63,8 @@ class StateResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            EmployeesRelationManager::class,
+            CitiesRelationManager::class,
         ];
     }
 
