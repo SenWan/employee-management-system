@@ -20,7 +20,7 @@ class CountryResource extends Resource
 {
     protected static ?string $model = Country::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-flag';
     protected static ?string $navigationGroup = 'System Management';
 
     public static function form(Form $form): Form
@@ -29,8 +29,12 @@ class CountryResource extends Resource
             ->schema([
                 Card::make()
                     ->Schema([
-                        TextInput::make('country_code'),
+                        TextInput::make('country_code')
+                            ->required()
+                            ->maxLength(3),
                         TextInput::make('name')
+                            ->required()
+                            ->maxLength(255)
                     ])
             ]);
     }
@@ -54,14 +58,14 @@ class CountryResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -69,5 +73,5 @@ class CountryResource extends Resource
             'create' => Pages\CreateCountry::route('/create'),
             'edit' => Pages\EditCountry::route('/{record}/edit'),
         ];
-    }    
+    }
 }
