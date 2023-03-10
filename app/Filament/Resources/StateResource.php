@@ -26,13 +26,13 @@ class StateResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Card::make()
-                ->Schema([
-                    Select::make('country_id')
-                    ->relationship('country', 'name'),
-                    TextInput::make('name')
-                ])
+            ->schema([
+                Card::make()
+                    ->Schema([
+                        Select::make('country_id')
+                            ->relationship('country', 'name'),
+                        TextInput::make('name')
+                    ])
             ]);
     }
 
@@ -42,7 +42,7 @@ class StateResource extends Resource
             ->columns([
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('country.name')->sortable(),
+                TextColumn::make('email')->sortable(),
                 TextColumn::make('created_at')->dateTime()
             ])
             ->filters([
@@ -55,14 +55,14 @@ class StateResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -70,5 +70,5 @@ class StateResource extends Resource
             'create' => Pages\CreateState::route('/create'),
             'edit' => Pages\EditState::route('/{record}/edit'),
         ];
-    }    
+    }
 }
